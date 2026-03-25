@@ -67,7 +67,7 @@ export default function AppointmentForm({
   const fetchServices = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3050/services', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/services`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -82,7 +82,7 @@ export default function AppointmentForm({
   const fetchBarbers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3050/barbers', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/barbers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();

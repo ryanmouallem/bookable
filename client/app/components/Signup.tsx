@@ -40,7 +40,7 @@ export default function Signup({ onSignupSuccess, onShowLogin }: SignupProps) {
     setError('');
 
     try {
-      const signupResponse = await fetch('http://localhost:3050/auth/signup', {
+      const signupResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -57,7 +57,7 @@ export default function Signup({ onSignupSuccess, onShowLogin }: SignupProps) {
         return;
       }
 
-      const loginResponse = await fetch('http://localhost:3050/auth/login', {
+      const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

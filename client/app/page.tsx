@@ -35,7 +35,7 @@ export default function App() {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3050/appointments', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/appointments`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -70,7 +70,7 @@ export default function App() {
   const handleDelete = async (id: number) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:3050/appointments/${id}`, {
+      await await fetch(`${process.env.NEXT_PUBLIC_API_URL}/appointments/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

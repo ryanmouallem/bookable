@@ -25,7 +25,7 @@ export default function Login({ onLoginSuccess, onShowSignup }: LoginProps) {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3050/auth/login', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginForm),
