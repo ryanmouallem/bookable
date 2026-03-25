@@ -5,16 +5,16 @@
     }
   },
   "rewrites": [
-    { "source": "/(.*)", "destination": "/api" }
+    { "source": "/auth/(.*)", "destination": "/api" },
+    { "source": "/services/(.*)", "destination": "/api" },
+    { "source": "/barbers/(.*)", "destination": "/api" },
+    { "source": "/appointments/(.*)", "destination": "/api" },
+    { "source": "/health", "destination": "/api" }
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/(auth|services|barbers|appointments)/(.*)",
       "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://bookable-33ju.vercel.app"
-        },
         {
           "key": "Access-Control-Allow-Methods",
           "value": "GET, POST, PUT, DELETE, OPTIONS"
