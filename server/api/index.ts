@@ -25,6 +25,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(express.json());
 
+app.get('/health', (_req: Request, res: Response) => {
+  res.json({ status: 'ok' });
+});
+
 app.use('/auth', authRoutes);
 app.use('/services', servicesRoutes);
 app.use('/barbers', barbersRoutes);
