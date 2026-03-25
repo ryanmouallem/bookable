@@ -4,8 +4,6 @@ Full-stack barbershop scheduling system built with TypeScript, Next.js, Express,
 
 **Live Demo:** https://bookable-33ju.vercel.app
 
-**API:** https://bookable-hlqouww1v-ryanmouallems-projects.vercel.app
-
 ---
 
 ## Features
@@ -175,4 +173,4 @@ MIT
 ## Contact
 
 **Ryan Mouallem**
-[GitHub](https://github.com/ryanmouallem) | [LinkedIn](https://linkedin.com/in/ryanmouallem)
+[GitHub](https://github.com/ryanmouallem) | [LinkedIn](https://www.linkedin.com/in/ryan-mouallem/)
