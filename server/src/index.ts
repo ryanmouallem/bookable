@@ -8,7 +8,7 @@ import appointmentsRoutes from './routes/appointments.routes';
 const app = express();
 const PORT = process.env.PORT || 3050;
 
-const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:3000';
+const allowedOrigin = process.env.FRONTEND_URL || 'https://bookable-33ju.vercel.app';
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
