@@ -121,8 +121,8 @@ export default function AppointmentForm({
     try {
       const token = localStorage.getItem('token');
       const url = editingAppointment
-        ? `http://localhost:3050/appointments/${editingAppointment.id}`
-        : 'http://localhost:3050/appointments';
+        ? `${process.env.NEXT_PUBLIC_API_URL}/appointments/${editingAppointment.id}`
+        : `${process.env.NEXT_PUBLIC_API_URL}/appointments`;
       const method = editingAppointment ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
