@@ -21,6 +21,17 @@ router.post('/signup', async (req: Request, res: Response) => {
       user: result.rows[0],
     });
   } catch (error) {
+    console.error('Signup failed:', error);
+
+    if (
+      typeof error === 'object' &&
+      error !== null &&
+      'code' in error &&
+      error.code === '23505'
+    ) {
+      return res.status(409).json({ error: 'Email already exists' });
+    }
+
     res.status(500).json({ error: 'Server error' });
   }
 });
@@ -62,6 +73,7 @@ router.post('/login', async (req: Request, res: Response) => {
       },
     });
   } catch (error) {
+    console.error('Login failed:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
