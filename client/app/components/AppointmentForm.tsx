@@ -3,6 +3,18 @@
 import { useState, useEffect } from 'react';
 import { Service, Barber, AppointmentFormData, Appointment } from '../types';
 
+const normalizeService = (service: Service) => ({
+  ...service,
+  price: Number(service.price),
+  duration: Number(service.duration),
+});
+
+const normalizeAppointment = (appointment: Appointment) => ({
+  ...appointment,
+  price: Number(appointment.price),
+  duration: Number(appointment.duration),
+});
+
 interface AppointmentFormProps {
   editingAppointment: Appointment | null;
   onAppointmentSaved: (isEdit: boolean) => void;
@@ -38,12 +50,14 @@ export default function AppointmentForm({
 
   useEffect(() => {
     if (editingAppointment) {
+      const normalizedAppointment = normalizeAppointment(editingAppointment);
+
       setFormData({
-        client_name: editingAppointment.client_name,
-        client_phone: editingAppointment.client_phone || '',
-        service: editingAppointment.service,
-        price: editingAppointment.price,
-        duration: editingAppointment.duration,
+        client_name: normalizedAppointment.client_name,
+        client_phone: normalizedAppointment.client_phone || '',
+        service: normalizedAppointment.service,
+        price: normalizedAppointment.price,
+        duration: normalizedAppointment.duration,
         barber: editingAppointment.barber,
         appointment_date: editingAppointment.appointment_date.split('T')[0],
         appointment_time: editingAppointment.appointment_time.slice(0, 5),
@@ -72,7 +86,7 @@ export default function AppointmentForm({
       });
       const data = await response.json();
       if (Array.isArray(data)) {
-        setServices(data);
+        setServices(data.map(normalizeService));
       }
     } catch (error) {
       console.error('Failed to fetch services:', error);

@@ -8,6 +8,12 @@ import AppointmentList from './components/AppointmentList';
 import AppointmentForm from './components/AppointmentForm';
 import { Appointment } from './types';
 
+const normalizeAppointment = (appointment: Appointment) => ({
+  ...appointment,
+  price: Number(appointment.price),
+  duration: Number(appointment.duration),
+});
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
@@ -49,7 +55,8 @@ export default function App() {
       const data = await response.json();
 
       if (Array.isArray(data)) {
-        const sorted = data.sort((a, b) => {
+        const normalizedAppointments = data.map(normalizeAppointment);
+        const sorted = normalizedAppointments.sort((a, b) => {
           const dateA = new Date(`${a.appointment_date} ${a.appointment_time}`);
           const dateB = new Date(`${b.appointment_date} ${b.appointment_time}`);
           return dateA.getTime() - dateB.getTime();
